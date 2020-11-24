@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>borgmatic server</Name>
+  <Repository>b3vis/borg-server</Repository>
+  <Registry>https://hub.docker.com/r/b3vis/borg-server/</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://google.com/</Support>
+  <Project>https://hub.docker.com/r/b3vis/borg-server/</Project>
+  <Overview>borgmatic is simple, configuration-driven backup software for servers and workstations. Protect your files with client-side encryption. Backup your databases too. Monitor it all with integrated third-party services.</Overview>
+  <Category>Backup</Category>
+  <WebUI/>
+  <TemplateURL>https://github.com/umizoomi/unraid-docker-templates/blob/master/borg-server.xml</TemplateURL>
+  <Icon>https://github.com/witten/borgmatic/raw/master/docs/static/borgmatic.png</Icon>
+  <ExtraParams>--cap-add SYS_ADMIN</ExtraParams>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled>1605971049</DateInstalled>
+  <DonateText/>
+  <DonateLink/>
+  <Description>borgmatic is simple, configuration-driven backup software for servers and workstations. Protect your files with client-side encryption. Backup your databases too. Monitor it all with integrated third-party services.</Description>
+  <Networking>
+    <Mode>bridge</Mode>
+    <Publish>
+      <Port>
+        <HostPort>2269</HostPort>
+        <ContainerPort>22</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
+    </Publish>
+  </Networking>
+  <Data>
+    <Volume>
+      <HostDir>/mnt/user/appdata/borg-server/.ssh</HostDir>
+      <ContainerDir>/home/borg/.ssh</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+    <Volume>
+      <HostDir>/mnt/user/backups</HostDir>
+      <ContainerDir>/backups</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+  </Data>
+  <Environment>
+    <Variable>
+      <Value>99</Value>
+      <Name>PUID</Name>
+      <Mode/>
+    </Variable>
+    <Variable>
+      <Value>100</Value>
+      <Name>PGID</Name>
+      <Mode/>
+    </Variable>
+  </Environment>
+  <Labels/>
+  <Config Name="Borg server .ssh volume" Target="/home/borg/.ssh" Default="/mnt/user/appdata/borg-server/.ssh" Mode="rw" Description="Container Path: /home/borg/.ssh" Type="Path" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="Backups dir" Target="/backups" Default="/mnt/user/backups" Mode="rw" Description="Container Path: /backups" Type="Path" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="PUID" Target="PUID" Default="99" Mode="" Description="UID for permissions.  Do not change unless you know what you're doing." Type="Variable" Display="advanced-hide" Required="true" Mask="false"></Config>
+  <Config Name="PGID" Target="PGID" Default="100" Mode="" Description="GID for permissions.  Do not change unless you know what you're doing." Type="Variable" Display="advanced-hide" Required="true" Mask="false"></Config>
+</Container>
